@@ -64,19 +64,23 @@ class Views{
                         <!-- LOGO -->
                         
                         <!-- MENU -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 menu">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 menu">
                             
                         </div>
                         <!-- MENU -->
 
                         <!-- ACTIONS -->
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 actions text-right">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 actions text-right">
                             
                             <div class="foto-perfil" onclick="app.editarPerfil();" style="background:url('assets/images/perfil.png') #f2f2f2 no-repeat;background-size:cover;background-position:center center;">
                                 <a href="javascript:void(0)" title="Editar Perfil">
                                     &nbsp;
                                 </a>
+
+                                
                             </div>
+
+                            <img src="assets/images/logo.png" style="width:83px;" />
 
                         </div>
                         <!-- ACTIONS -->
@@ -1997,7 +2001,7 @@ class Views{
 
                                     <h4>Editar campos de cadastro desse tipo de imóvel: ${nomeTipoImovel}</h4>
                                     <p>Caso queira remover um campo ou desistiu de adicioná-lo, é só deixar o campo "Nome do campo" em branco<br>
-                                       Campos como nome do imóvel, descrição e endereço, não precisam ser cadastrados por que eles serão padrões para todos os tipos de imóveis.</p>
+                                       Campos como nome do imóvel, REF., descrição e endereço, não precisam ser cadastrados por que eles serão padrões para todos os tipos de imóveis.</p>
 
 
                                     <div class="form" style="display:block;padding-top:30px;">
@@ -2241,11 +2245,17 @@ class Views{
                            <!-- TÍTULOS DA PÁGINAS -->
                            
                            <div class="row">
-                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 offset-xl-7 offset-lg-7 offset-md-7 offset-sm-7" style="padding-right:0px;">
+                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5" style="padding-right:0px;">
                                      
+                                     <a href="javascript:void(0)" style="float:right;margin-left:10px;" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
+                                         <i class="fa fa-file-excel-o "></i> Exportar
+                                      </a>
+
                                      <a href="javascript:void(0)" style="float: right;" onclick="app.adicionarImoveis()" class="btn btn-primary" title="Adicionar novo tipo de imóvel">
                                        <i class="fa fa-plus"></i> Adicionar
                                      </a>
+
+
 
                                      <!-- BUSCA AVULSA -->
                                      <div class="busca-avulsa">
@@ -2268,7 +2278,7 @@ class Views{
                                    <thead>
                                       <th>#</th>
                                       <th>Nome</th>
-                                      <th style="width:150px;">Ações</th>
+                                      <th style="width:190px;">Ações</th>
                                    </thead>
 
                                    <tbody id="conteudoImoveis">
@@ -2282,6 +2292,10 @@ class Views{
                            <div class="text-right">
                               <a href="javascript:void(0)" onclick="app.adicionarImoveis()" class="btn btn-primary" title="Adicionar novo imóvel">
                                  <i class="fa fa-plus"></i> Adicionar
+                              </a>
+
+                              <a href="javascript:void(0)" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
+                                 <i class="fa fa-file-excel-o "></i> Exportar
                               </a>
                               
                            </div>
@@ -2321,14 +2335,22 @@ class Views{
                             <tr id="linha${n.id}">
                               <td>${n.id}</td>
                               <td>${n.nome}</td>
-                              <td style="width:150px;">
+                              <td style="width:190px;">
                                   
-                                  <a href="javascript:void(0)" onclick="app.perguntarRemoverImoveis(${n.id})" class="btn btn-warning btn-sm" title="Apagar">
+                                  <a href="javascript:void(0)" onclick="//app.perguntarRemoverImoveis(${n.id})" class="btn btn-warning btn-sm" title="Apagar">
                                     <i class="fa fa-trash"></i>
                                   </a>
 
-                                  <a href="javascript:void(0)" onclick="app.editarImoveis(${n.id})" class="btn btn-primary btn-sm" title="Editar">
+                                  <a href="javascript:void(0)" onclick="//app.editarImoveis(${n.id})" class="btn btn-primary btn-sm" title="Editar">
                                      <i class="fa fa-pencil"></i>
+                                  </a>
+
+                                  <a href="javascript:void(0)" onclick="//app.editarImoveis(${n.id})" class="btn btn-primary btn-sm" title="Visualizar">
+                                     <i class="fa fa-eye"></i>
+                                  </a>
+
+                                  <a href="javascript:void(0)" onclick="//app.editarImoveis(${n.id})" class="btn btn-primary btn-sm" title="Autorização">
+                                     <i class="fa fa-unlock-alt"></i>
                                   </a>
 
                               </td>
@@ -2355,7 +2377,7 @@ class Views{
                
                  <div class="row view-adicionarTipoImoveis" view-name="view-adicionarTipoImoveis">
 
-                      <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
                             
                             <div class="area-formulario">
 
@@ -2386,6 +2408,18 @@ class Views{
                                                       <!-- COLUNA DOIS -->
                                                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 no-padding-left-desktop">
                                                           
+                                                          <div class="form-group has-feedback">
+                                                             <label>REF. do imóvel</label>
+                                                             <input type="text" class="form-control" name="imoveisRef" id="imoveisRef" placeholder="REF. do imóvel" required />
+                                                             <span onclick="app.models.nextRef();" class="badge badge-secondary">AUTO</span>
+                                                          </div>
+
+                                                      </div>
+                                                      <!-- COLUNA DOIS -->
+
+
+                                                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 no-padding-left-desktop">
+                                                          
                                                           <div class="form-group">
                                                              <label>Tipo de imóvel</label>
                                                              <select class="form-control" required name="imoveisTipo" id="imoveisTipo" onchange="app.buscarCamposImoveis(this.value)">
@@ -2394,7 +2428,6 @@ class Views{
                                                           </div>
 
                                                       </div>
-                                                      <!-- COLUNA DOIS -->
 
                                                   </div>
 
@@ -2595,7 +2628,7 @@ class Views{
                                               <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 no-padding-left-desktop galeria-imovel">
                                                   <h4 style="font-size: 15px;margin-bottom: 14px;text-align: center;">Imagens do Imóvel</h4>
                                                   
-                                                  <div class="card">
+                                                  <div class="card blank" data-accept="draggable">
                                                      <p style="text-align:center;font-size:12px;">
                                                          Nenhuma imagem ainda
                                                      </p>
@@ -2643,9 +2676,11 @@ class Views{
 
       `);
 
-       
+    }
 
-
+    nextRef(dados){
+        
+        $("#imoveisRef").val("RMN"+dados.next);
 
     }
 
@@ -2728,6 +2763,69 @@ class Views{
       $("#imovelBairro").val(endereco.bairro);
       $("#imovelCidade").val(endereco.localidade);
       $("#imovelEstado").val(endereco.uf);
+
+    }
+
+    popularImagensUpload(dados){
+       
+       // LIMPAR A SESSAO
+       $(".card").html("");
+
+       console.log("ESSE É O TAMANHO DOS DADOS: ");
+       console.log(dados.dados.length);
+
+       
+       
+       // ALIMENTAR TANTO OS PREVIEWS, COMO TAMBÉM OS INPUTS
+       for(var i = 0;i < dados.dados.length; i++){
+
+         
+          
+          $(".card").append(`
+
+               
+                       <div class="caixa-preview-imagem-carregada draggable" data-id="${i}" data-url="${dados.dados[i].url}" ondrag="processarDrag()" id="caixaPreviewImagemCarregada${i}">
+                          <div style="margin-left:auto;margin-right:auto;position:relative;display:block;width:100px;height:100px;border-radius:8px;background:url('${app.urlCdn}${dados.dados[i].url}') #f2f2f2 no-repeat;background-size:cover;background-position:center center;">
+                              &nbsp;
+                          </div>
+                          <p>
+                            <a href="javascript:void(0)" onclick="app.views.removerImagemGaleriaImagens(${i})" title="Remover essa imagem" style="font-size:13px;color:#ff0000;">
+                              <i class="fa fa-times"></i> remover
+                          </a>
+                          </p>
+                       </div>
+                       
+                    
+
+          `);
+
+          
+
+          $("#formAddImoveis").append(`
+
+            <input type="hidden" name="galeriaImgensImoveis[]" class="campos-das-imagens" id="galeriaImgensImoveis${i}" value="${dados.dados[i].url}" />
+
+          `);
+
+       }
+
+
+       // ARRASTAR E SOLTAR PARA ORDENAÇÃO DAS FOTOS
+       $('.draggable').draggable({
+            revert: true,
+            snapTolerance: 30,
+            revertDuration: 0
+        });
+
+       
+
+    }
+
+    removerImagemGaleriaImagens(idDaImagem){
+
+      // REMOVER UMA IMAGEM DOS UPLOADS DAS IMAGENS
+      $("#galeriaImgensImoveis"+idDaImagem).remove();
+      $("#caixaPreviewImagemCarregada"+idDaImagem).remove();
 
     }
 

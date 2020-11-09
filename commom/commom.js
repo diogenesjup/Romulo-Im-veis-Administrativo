@@ -149,6 +149,10 @@ $(document).ready(function() {
     }
   });
 });
+     
+
+      
+
 
      
      // PREVIEW DOS ARQUIVOS ENVIADOS VIA UPLOAD
@@ -182,8 +186,65 @@ $(document).ready(function() {
               //}
 
           }
+          
+          
 
      }
+
+
+    /* PARA CADA DRAG AND DROP VAMOS REINICIAR AS FUNÇÕES */
+    function processarDrag(){
+      
+      console.log("CAPTURANDO O DRAG AND DROP EVENT");
+
+        $('.blank').each(function(index) {
+
+          toAccept = $(this)[0].dataset.accept;
+          // Resize spans to correct answer
+          if ($(this).hasClass('resizable')) {
+            answer = $('.draggable.' + toAccept);
+            width = answer[0].scrollWidth;
+            width = width - ($(this).css('padding-left').replace('px', '') * 2);
+            $(this).css('width', width);
+
+            //console.log("ANALISANDO PRIMEIRO TRECHO");
+          
+          }
+          
+          
+          $(this).droppable({
+            accept: '.' + toAccept,
+            drop: function(event, ui) {
+              $(this).append(ui.draggable);
+              $(this).addClass('answered');
+
+             
+              //$(ui.draggable).draggable('destroy');
+              $(this).droppable("destroy");
+              
+              //console.log("ANALISANDO O SEGUNDO TRECHO");
+
+            }
+          }); 
+        });
+        
+        // RESETAR OS FORMULÁRIOS COM AS URL's
+        $(".campos-das-imagens").remove();
+
+        $('.caixa-preview-imagem-carregada').each(function(index) {
+             
+             var id = $(this).attr("data-id");
+             var url = $(this).attr("data-url");
+
+             $("#formAddImoveis").append(`
+
+                <input type="hidden" name="galeriaImgensImoveis[]" class="campos-das-imagens" id="galeriaImgensImoveis${id}" value="${url}" />
+
+            `);
+
+        });    
+
+    }
 
      // CODIGOS PARA UPLOAD DE ARQUIVOS LOCAIS
      function uploadLocal(){
@@ -214,6 +275,12 @@ $(document).ready(function() {
                 console.log("NENHUM ERRO!");
                 fecharAviso();
                 aviso("Imagens enviadas com sucesso!.","As imagens foram salvas.");
+
+                // ENVIAR AS IMAGENS PARA A SESSAO DESEJADA
+
+                if(localStorage.getItem("destinoImagens")=="imoveis"){
+                  app.views.popularImagensUpload(dados);
+                }
 
             }else{
 

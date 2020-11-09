@@ -2079,9 +2079,56 @@ class Models{
     }
 
 
+    nextRef(){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-next-id.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS CAMPOS NEXT REF (ID):");
+                console.log(JSON.parse(xhr.responseText));
+
+              }else{
+                
+                console.log("SEM SUCESSO nextRef()");
+                console.log(JSON.parse(xhr.responseText));
+
+                aviso("Oops! Algo deu errado","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+              }
+
+              var dados = JSON.parse(xhr.responseText);
+              
+              // AQUI É ONDE ENVIAREMOS OS TIPOS
+              app.views.nextRef(dados);
+             
+             
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send();
+
+
+    }
+
+
 
 
     procAdicionarImoveis(){
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
 
         $("#btnAddItem").html("Processando...");
         $(".form-control").attr("readonly","true");
@@ -2096,11 +2143,7 @@ class Models{
 
         var params = 'idUsuario='+idUsuario+
                      "&token="+app.token+
-                     "&tipoImoveisNome="+tipoImoveisNome+
-                     "&tipoImoveisFiltro="+tipoImoveisFiltro+
-                     "&tipoImoveisLigacao="+tipoImoveisLigacao+
-                     "&tipoImoveisIdLigacao="+tipoImoveisIdLigacao+
-                     "&tipoImoveisLigacaoObrigatorio="+tipoImoveisLigacaoObrigatorio;
+                     "&"+dados;
         
         // INICIO AJAX VANILLA
         xhr.onreadystatechange = () => {
@@ -2132,7 +2175,6 @@ class Models{
 
       $("#btnAddItem").html("Adicionar");
       $(".form-control").removeAttr("readonly");
-
 
 
     }
