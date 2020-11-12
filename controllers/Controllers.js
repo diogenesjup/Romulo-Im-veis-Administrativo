@@ -575,6 +575,19 @@ class App {
 
     }
 
+    destacarImovelHomepage(seletor){
+
+      var id = $(seletor).attr("data-id");
+      console.log("ESSE É O ID QUE VAMOS DESTACAR NA HOMEPAGE: "+id);
+
+      if($(seletor).is(":checked")){
+         console.log("CAMPO SELECIONADO");
+      }else{
+         console.log("CAMPO NÃO ESTÁ SELECIONADO");
+      }
+        
+    }
+
     filtrotabelaImoveis(){
 
                   var input, filter, ul, li, a, i;
@@ -652,6 +665,27 @@ class App {
         this.models.removerImoveis(id);
     }
 
+    procAtualizarSeo(){
+      this.models.procAtualizarSeo();
+    }
+
+
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   CMS
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+
+    cms(){
+       
+       this.views.cms();
+
+    }
 
 /**
 *  ------------------------------------------------------------------------------------------------

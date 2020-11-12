@@ -2154,7 +2154,11 @@ class Models{
 
               console.log("OPERAÇÃO REALIZADA COM SUCESSO");
               aviso("Imóvel adicionado com sucesso!","O novo imóvel foi cadastrado.");
-              
+
+              // EXIBIR OS DADOS NO CONSOLE
+              //console.log("%c PROVA REAL: ","background:#ff0000;color:#000");
+              //console.log(JSON.parse(xhr.responseText));
+
               // VOLTAR PARA TODOS OS IMOVEIS
               app.imoveis();
 
@@ -2192,18 +2196,6 @@ class Models{
 
       var params = 'idUsuario='+idUsuario+"&token="+app.token;
 
-      /*
-
-        Então, quais são os estados possíveis de um requisição AJAX? Listaremos abaixo os estados:
-        0: requisição ainda não iniciada
-        1: conexão com o servidor estabelecida
-        2: requisição recebida
-        3: processando requisição
-        4: requisição está concluída e a resposta está pronta
-        O estado 4 é o que mais nos interessa, porque é nele que temos acesso à resposta enviada pelo servidor.
-
-      */
-      
       xhr.onreadystatechange = () => {
           if(xhr.readyState == 4) {
 
@@ -2218,25 +2210,8 @@ class Models{
 
                     $(".placeholder").hide(0);
                     $(".form").fadeIn(500);
-                    
-                    $("#tipoImoveisId").val(id);
-                    
-                    $("#tipoImoveisNome").val(dados.imovel_tipo[0].nome);
-                    $("#tipoImoveisFiltro").val(dados.imovel_tipo[0].visivel_filtro);
-                    
-                    if(dados.imovel_tipo[0].id_ligacao!=""){
-                       $("#tipoImoveisLigacao").val("sim");
-                    }else{
-                       $("#tipoImoveisLigacao").val("nao");
-                    }
-                    
-                    $("#tipoImoveisIdLigacao").val(dados.imovel_tipo[0].id_ligacao);
-                    $("#tipoImoveisLigacaoObrigatorio").val(dados.imovel_tipo[0].obrigatorio_ligacao);
 
-                    console.log("DEPURAÇÃO: "+dados.imovel_tipo[0].id_ligacao,"background:#fff000;color:#000;");
-
-                    // CARREGAR MASCARAS
-                    app.helpers.carregarMascaras();
+                    app.views.popularEditarImoveis(dados);
 
                   }else{
                     
@@ -2264,27 +2239,17 @@ class Models{
         $("#btnEditarItem").html("Processando...");
         $(".form-control").attr("readonly","true");
 
-        var idUsuario = $("#tipoImoveisId").val();
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
 
-        var tipoImoveisNome = $("#tipoImoveisNome").val();
-        var tipoImoveisFiltro = $("#tipoImoveisFiltro").val();
-        var tipoImoveisLigacao = $("#tipoImoveisLigacao").val();
-        var tipoImoveisIdLigacao = $("#tipoImoveisIdLigacao").val();
-        var tipoImoveisLigacaoObrigatorio = $("#tipoImoveisLigacaoObrigatorio").val();
-       
         // CONFIGURAÇÕES AJAX VANILLA
         let xhr = new XMLHttpRequest();
          
         xhr.open('POST', app.urlApi+'admin-proc-editar-imoveis.php',true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-        var params = 'idUsuario='+idUsuario+
-                     "&token="+app.token+
-                     "&tipoImoveisNome="+tipoImoveisNome+
-                     "&tipoImoveisFiltro="+tipoImoveisFiltro+
-                     "&tipoImoveisLigacao="+tipoImoveisLigacao+
-                     "&tipoImoveisIdLigacao="+tipoImoveisIdLigacao+
-                     "&tipoImoveisLigacaoObrigatorio="+tipoImoveisLigacaoObrigatorio;
+        var params = "token="+app.token+
+                     "&"+dados;
                      
         // INICIO AJAX VANILLA
         xhr.onreadystatechange = () => {
@@ -2313,6 +2278,62 @@ class Models{
       $(".form-control").removeAttr("readonly");
        
     }
+    
+
+
+
+
+    procAtualizarSeo(){
+
+        $("#btnAtualizarSeoImovel").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveisSeo').formSerialize();
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-proc-editar-seo-imoveis.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token+
+                     "&"+dados;
+                     
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Deu certo!","As informações foram atualizadas.");
+
+            }else{
+              
+              console.log("SEM SUCESSO procAtualizarSeo()");
+              console.log(JSON.parse(xhr.responseText));
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAtualizarSeoImovel").html("Atualizar");
+      $(".form-control").removeAttr("readonly");
+
+
+    }
+
+
+
+
+
+
 
     removerImoveis(id){
 
