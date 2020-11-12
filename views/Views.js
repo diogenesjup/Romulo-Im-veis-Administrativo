@@ -136,41 +136,85 @@ class Views{
             this._content.html(`
 
               <div class="container">
-            
+                 
                    <div class="row view-principal" view-name="view-principal">
-                      <div class="col-12 wow fadeInUp">
-                         <h1>Imóveis</h1>
-                         <p>Imóveis mais acessados na plataforma</p>
-                         
+                       <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                           
+                           <!-- TÍTULOS DA PÁGINAS --> 
+                           <h4>Início</h4>
+                           <p>Bem vindo, esses são os imóveis cadastrados na plataforma:</p>
+                           <p>&nbsp;</p>
+                           <!-- TÍTULOS DA PÁGINAS -->
+                           
+                           <div class="row">
+                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5" style="padding-right:0px;">
+                                     
+                                     <a href="javascript:void(0)" style="float:right;margin-left:10px;" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
+                                         <i class="fa fa-file-excel-o "></i> Exportar
+                                      </a>
 
-                         <!-- EMPTY STATE -->
-                        <div class="linear-background">
-                            <div class="inter-draw"></div>
-                            <div class="inter-crop"></div>
-                            <div class="inter-right--top"></div>
-                            <div class="inter-right--bottom"></div>
-                        </div>
-                        <div class="linear-background">
-                            <div class="inter-draw"></div>
-                            <div class="inter-crop"></div>
-                            <div class="inter-right--top"></div>
-                            <div class="inter-right--bottom"></div>
-                        </div>
-                        <div class="linear-background">
-                            <div class="inter-draw"></div>
-                            <div class="inter-crop"></div>
-                            <div class="inter-right--top"></div>
-                            <div class="inter-right--bottom"></div>
-                        </div>
-                        <!-- EMPTY STATE -->
+                                     <a href="javascript:void(0)" style="float: right;" onclick="app.adicionarImoveis()" class="btn btn-primary" title="Adicionar novo tipo de imóvel">
+                                       <i class="fa fa-plus"></i> Adicionar
+                                     </a>
 
 
-                      </div>
+
+                                     <!-- BUSCA AVULSA -->
+                                     <div class="busca-avulsa">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                   <span class="input-group-text">
+                                                      <i class="fa fa-search" aria-hidden="true"></i>
+                                                   </span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Faça uma pesquisa" onkeyup="app.filtrotabelaImoveis();" id="filtroTabelaImoveis">
+                                            </div>
+                                     </div>
+                                     <!-- BUSCA AVULSA -->
+                                     
+                              </div>
+                           </div>
+                           <div class="table-responsive">
+                               
+                               <table class="table table-striped">
+                                   <thead>
+                                      <th>#</th>
+                                      <th>Nome</th>
+                                      <th>Views</th>
+                                      <th></th>
+                                      <th style="width:190px;">Ações</th>
+                                   </thead>
+
+                                   <tbody id="conteudoImoveis">
+                                      ${this.carregandoTabela}
+                                   </tbody>
+
+                               </table>
+
+                           </div>
+                           
+                           <div class="text-right">
+                              <a href="javascript:void(0)" onclick="app.adicionarImoveis()" class="btn btn-primary" title="Adicionar novo imóvel">
+                                 <i class="fa fa-plus"></i> Adicionar
+                              </a>
+
+                              <a href="javascript:void(0)" style="float:right;margin-left:10px;" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
+                                         <i class="fa fa-file-excel-o "></i> Exportar
+                                      </a>
+
+                                     
+                              
+                           </div>
+
+
+                       </div>
                    </div>
 
               </div>
             
             `);
+
+            app.models.imoveis();
 
             this.animarTransicao();
 
@@ -2250,7 +2294,7 @@ class Views{
                               <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5" style="padding-right:0px;">
                                      
                                      <a href="javascript:void(0)" style="float:right;margin-left:10px;" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
-                                         <i class="fa fa-file-excel-o "></i> Exportar VivaReal
+                                         <i class="fa fa-file-excel-o "></i> Exportar
                                       </a>
 
                                      <a href="javascript:void(0)" style="float: right;" onclick="app.adicionarImoveis()" class="btn btn-primary" title="Adicionar novo tipo de imóvel">
@@ -2299,7 +2343,7 @@ class Views{
                               </a>
 
                               <a href="javascript:void(0)" style="float:right;margin-left:10px;" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
-                                         <i class="fa fa-file-excel-o "></i> Exportar VivaReal
+                                         <i class="fa fa-file-excel-o "></i> Exportar
                                       </a>
 
                                      
@@ -2324,6 +2368,7 @@ class Views{
     popularImoveis(dados){
 
           var visualizacoes = 0;
+          var checked = "";
 
          if(dados.sucesso=="200"){
 
@@ -2339,7 +2384,8 @@ class Views{
                   
                    ${dados.imoveis.map((n) => {
 
-                    if(n.num_views===null){ visualizacoes = 0; }
+                    if(n.num_views===null){ visualizacoes = 0; }else{ visualizacoes = n.num_views; }
+                    if(n.destaque_home=="sim"){ checked = "checked"; }else{ checked = "" }
 
                           return `
                             <tr id="linha${n.id}">
@@ -2348,7 +2394,7 @@ class Views{
                               <td>${visualizacoes}</td>
                               <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" data-id="${n.id}" onchange="app.destacarImovelHomepage(this)" type="checkbox" value="sim" id="destaqueHomepage${n.id}">
+                                  <input class="form-check-input" ${checked} onchange="app.destacarImovelHomepage(this,${n.id})" type="checkbox" value="sim" id="destaqueHomepage${n.id}">
                                   <label class="form-check-label" for="destaqueHomepage${n.id}">
                                     Destacar homepage
                                   </label>

@@ -575,15 +575,20 @@ class App {
 
     }
 
-    destacarImovelHomepage(seletor){
+    destacarImovelHomepage(seletor,id){
 
-      var id = $(seletor).attr("data-id");
       console.log("ESSE É O ID QUE VAMOS DESTACAR NA HOMEPAGE: "+id);
 
       if($(seletor).is(":checked")){
+
          console.log("CAMPO SELECIONADO");
+         this.models.destacarImovelHomepage(id,"sim");
+      
       }else{
+      
          console.log("CAMPO NÃO ESTÁ SELECIONADO");
+         this.models.destacarImovelHomepage(id,"nao");
+      
       }
         
     }

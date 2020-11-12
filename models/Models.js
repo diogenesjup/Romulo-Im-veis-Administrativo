@@ -2333,6 +2333,48 @@ class Models{
 
 
 
+    destacarImovelHomepage(id,acao){
+        
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-proc-destacar-imovel-homepage.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token+
+                     "&id="+id+
+                     "&acao="+acao;
+                     
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Deu certo!","O destaque do imóvel foi atualizado.");
+              console.log(JSON.parse(xhr.responseText));
+
+            }else{
+              
+              console.log("SEM SUCESSO destacarImovelHomepage()");
+              console.log(JSON.parse(xhr.responseText));
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+      
+    }
+
+
+
+
+
 
 
     removerImoveis(id){
