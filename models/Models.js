@@ -2418,4 +2418,118 @@ class Models{
     }
 
 
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   CMS
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+cmsSlides(){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-cms-slides.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS CMS SLIDES:");
+                console.log(JSON.parse(xhr.responseText));
+
+              }else{
+                
+                console.log("SEM SUCESSO cmsSlides()");
+                console.log(JSON.parse(xhr.responseText));
+
+                aviso("Oops! Algo deu errado","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+              }
+
+              var dados = JSON.parse(xhr.responseText);
+
+              app.popularSlides(dados);
+             
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+}
+
+
+procAdicionarSlide(){
+    
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-add-cms-slide.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Slide adicionado com sucesso!","O novo slide foi cadastrado.");
+
+              // EXIBIR OS DADOS NO CONSOLE
+              //console.log("%c PROVA REAL: ","background:#ff0000;color:#000");
+              //console.log(JSON.parse(xhr.responseText));
+
+              // VOLTAR PARA TODOS OS SLIDES
+              app.cmsSlides();
+
+            }else{
+              
+              console.log("SEM SUCESSO procAdicionarSlide()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Adicionar");
+      $(".form-control").removeAttr("readonly");
+
+
+}
+
+
+
+
 }

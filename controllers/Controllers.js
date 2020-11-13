@@ -692,6 +692,75 @@ class App {
 
     }
 
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   CMS > HOMEPAGE
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+
+    cmsHomepage(){
+        
+       this.views.cmsHomepage();
+
+    }
+
+    cmsSlides(){
+
+      this.views.cmsSlides();
+      this.models.cmsSlides();
+
+    }
+
+    popularSlides(slides){
+
+      this.views.popularSlides(slides);
+      
+    }
+
+     filtrotabelaSlides(){
+
+                  var input, filter, ul, li, a, i;
+                  
+                  input = document.getElementById('filtroTabelaAcessosSlides');
+                  filter = input.value.toUpperCase();
+                  ul = document.getElementById("conteudoSlides");
+
+                  li = ul.getElementsByTagName('tr');
+
+                  // Loop through all list items, and hide those who don't match the search query
+                  for (i = 0; i < li.length; i++) {
+                      a = li[i];
+                      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                          li[i].style.display = "";
+                      } else {
+                          li[i].style.display = "none";
+                      }
+                  }
+     }
+
+     adicionarSlide(){
+        
+        this.views.adicionarSlide();
+
+     }
+
+     procAdicionarSlide(){
+        
+        this.models.procAdicionarSlide();
+
+     }
+
+    cmsInfosHome(){
+
+      this.views.cmsInfosHome();
+
+    }
+
 /**
 *  ------------------------------------------------------------------------------------------------
 *
@@ -707,6 +776,11 @@ class App {
         // IMOVEIS
         if(tipo==1){
           localStorage.setItem("destinoImagens","imoveis");
+        }
+
+        // SLIDES
+        if(tipo==2){
+          localStorage.setItem("destinoImagens","slides");
         }
 
     }

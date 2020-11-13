@@ -2344,7 +2344,7 @@ class Views{
 
                               <a href="javascript:void(0)" style="float:right;margin-left:10px;" onclick="//app.adicionarImoveis()" class="btn btn-primary" title="Exportar imóvel">
                                          <i class="fa fa-file-excel-o "></i> Exportar
-                                      </a>
+                              </a>
 
                                      
                               
@@ -3514,6 +3514,398 @@ class Views{
       
 
     }
+
+
+
+
+/**
+*  ------------------------------------------------------------------------------------------------
+*
+*
+*   CMS > HOMEPAGE
+*
+*
+*  ------------------------------------------------------------------------------------------------
+*/
+    cmsHomepage(){
+
+           $(".sidemenu nav ul li").removeClass("ativo");
+           $("#menuCMS").addClass("ativo");
+
+           this._content.html(`
+            
+              <div class="container">
+                 
+                   <div class="row view-cms" view-name="view-cms">
+                       <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                           
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="#" title="">
+                                        Homepage
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+                           
+                           <!-- TÍTULOS DA PÁGINAS --> 
+                           <h4>Homepage</h4>
+                           <p>Editar conteúdo da homepage</p>
+                           <p>&nbsp;</p>
+                           <!-- TÍTULOS DA PÁGINAS -->
+
+                           
+                           <div class="row">
+                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5" style="padding-right:0px;">
+                                     
+                              </div>
+                           </div>
+
+                           <div class="table-responsive">
+                               
+                               <table class="table table-striped">
+                                   <thead>
+                                      <th>#</th>
+                                      <th>Sessão da homepage</th>
+                                      <th style="width:190px;">Ações</th>
+                                   </thead>
+
+                                   <tbody id="conteudoCMS">
+
+                                      <!-- LINHA -->
+                                      <tr>
+                                         <td></td>
+                                         <td>
+                                            Banners rotativos
+                                         </td>
+                                         <td>
+                                            <a href="javascript:void(0)" onclick="app.cmsSlides();" class="btn btn-primary" title="Editar">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      <!-- LINHA -->
+
+
+                                      <!-- LINHA -->
+                                      <tr>
+                                         <td></td>
+                                         <td>
+                                            Outras infos
+                                         </td>
+                                         <td>
+                                            <a href="javascript:void(0)" onclick="app.cmsInfosHome();" class="btn btn-primary" title="Editar">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      <!-- LINHA -->
+
+
+                                   </tbody>
+
+                               </table>
+
+                           </div>
+                           
+                          
+
+                       </div>
+                   </div>
+
+              </div>
+
+        `);
+
+        this.animarTransicao();
+      
+
+    }
+
+
+
+
+    cmsSlides(){
+
+           $(".sidemenu nav ul li").removeClass("ativo");
+           $("#menuCMS").addClass("ativo");
+
+           this._content.html(`
+            
+              <div class="container">
+                 
+                   <div class="row view-cms" view-name="view-cms">
+                       <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                           
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsHomepage()" title="">
+                                        Homepage
+                                    </a>
+                                    <span>/</span>
+                                    <a href="#" title="">
+                                        Slides (banners rotativos)
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+                           
+                           <!-- TÍTULOS DA PÁGINAS --> 
+                           <h4>Slides (banners rotativos)</h4>
+                           <p>Editar os banners rotativos da homepage</p>
+                           <p>&nbsp;</p>
+                           <!-- TÍTULOS DA PÁGINAS -->
+
+                           <div class="row">
+                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5" style="padding-right:0px;">
+                                     
+                                     <a href="javascript:void(0)" style="float: right;" onclick="app.adicionarSlide()" class="btn btn-primary" title="Adicionar novo slide">
+                                       <i class="fa fa-plus"></i> Adicionar
+                                     </a>
+
+                                     <!-- BUSCA AVULSA -->
+                                     <div class="busca-avulsa">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                   <span class="input-group-text">
+                                                      <i class="fa fa-search" aria-hidden="true"></i>
+                                                   </span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Faça uma pesquisa" onkeyup="app.filtrotabelaSlides();" id="filtroTabelaSlides">
+                                            </div>
+                                     </div>
+                                     <!-- BUSCA AVULSA -->
+
+
+                              </div>
+                           </div>
+
+                           <div class="table-responsive">
+                               
+                               <table class="table table-striped">
+                                   <thead>
+                                      <th>#</th>
+                                      <th>Imagem</th>
+                                      <th>Link</th>
+                                      <th>Nome SEO</th>
+                                      <th style="width:190px;">Ações</th>
+                                   </thead>
+
+                                   <tbody id="conteudoSlides">
+                                      ${this.carregandoTabela}
+                                   </tbody>
+
+                               </table>
+
+                           </div>
+                           
+                          
+
+                       </div>
+                   </div>
+
+              </div>
+
+        `);
+
+        this.animarTransicao();
+      
+
+    }
+
+    popularSlides(slides){
+
+      if(slides.sucesso=="200"){
+
+             $(".carregandoTabela").hide(0);
+
+             if(slides.slides.length==0){
+
+                aviso("Sem informações para mostrar","Nenhum usuário administrativo cadastrado");
+             
+             }
+         
+             $("#conteudoSlides").html(`
+                  
+                   ${slides.slides.map((n) => {
+                         
+                          return `
+                            <tr id="linha${n.id}">
+                              <td>${n.id}</td>
+                              <td><img src="${app.urlCdn}${n.url}" style="width:100px;" /></td>
+                              <td>${n.link}</td>
+                              <td>${n.nome_seo}</td>
+                              <td>
+                                  
+                                  <a href="javascript:void(0)" onclick="app.perguntarRemoverSlide(${n.id})" class="btn btn-warning btn-sm" title="Apagar">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+
+                                  <a href="javascript:void(0)" onclick="app.editarSlide(${n.id})" class="btn btn-primary btn-sm" title="Editar">
+                                     <i class="fa fa-pencil"></i>
+                                  </a>
+
+                              </td>
+                            </tr>
+                          `
+
+                    }).join('')}
+
+
+             `);
+
+         }else{
+
+          aviso("Oops! Algo deu errado","Não conseguimos recuperar as informações, tente novamente em alguns minutos.");
+         
+         }
+
+    }
+
+
+    adicionarSlide(){
+
+      this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsHomepage()" title="">
+                                        Homepage
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsSlides();" title="">
+                                        Slides (banners rotativos)
+                                    </a>
+                                    <span>/</span>
+                                    <a href="#" title="">
+                                        Adicionar novo slide (banners rotativos)
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Adicionar Slide</h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procAdicionarSlide(event)">
+                                            
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                      <!-- COLUNA UM -->
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Link de destino ao clicar</label>
+                                                             <input type="text" class="form-control" name="link" id="link" placeholder="Link de destino ao clicar" required />
+                                                          </div>
+
+                                                      </div>
+                                                      <!-- COLUNA UM -->
+
+                                                      <!-- COLUNA DOIS -->
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Nome do banner (para SEO)</label>
+                                                             <input type="text" class="form-control" name="nome_seo" id="nome_seo" placeholder="Nome do banner para SEO" required />
+                                                          </div>
+
+                                                      </div>
+                                                      <!-- COLUNA DOIS -->
+
+
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Adicionar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              <!-- COL 4 -->
+                                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 no-padding-left-desktop galeria-imovel">
+                                                  <h4 style="font-size: 15px;margin-bottom: 14px;text-align: center;">Imagem do slide</h4>
+                                                  
+                                                  <div class="card blank" data-accept="draggable">
+                                                     <p style="text-align:center;font-size:12px;">
+                                                         Nenhuma imagem ainda
+                                                     </p>
+                                                  </div>
+
+                                                  <p style="text-align:right;padding-top:12.5px;">
+                                                      <a href="javascript:void(0)" title="Adicionar imagem" onclick="app.defineDestinyImages(2)" data-toggle="modal" data-target="#modalUploadImages" class="btn btn-default">
+                                                         Adicionar imagem
+                                                      </a>
+                                                  </p>
+
+                                              </div>
+                                              <!-- COL 4 -->
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+    }
+
+
+
+
+
 
 
 
