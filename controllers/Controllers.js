@@ -722,11 +722,11 @@ class App {
       
     }
 
-     filtrotabelaSlides(){
+     filtroTabelaSlides(){
 
                   var input, filter, ul, li, a, i;
                   
-                  input = document.getElementById('filtroTabelaAcessosSlides');
+                  input = document.getElementById('filtroTabelaSlides');
                   filter = input.value.toUpperCase();
                   ul = document.getElementById("conteudoSlides");
 
@@ -755,9 +755,61 @@ class App {
 
      }
 
+     editarSlide(idSlide){
+         
+         this.views.editarSlide();
+         this.models.editarSlide(idSlide);
+
+     }
+
+     procEditarSlide(){
+        
+         this.models.procEditarSlide();
+
+     }
+
+
+     perguntarRemoverSlide(id){
+
+        confirmacao("Tem certeza que deseja remover esse slide?",
+                    "Essa ação não pode ser revertida",
+                    `app.removerSlide(${id})`,
+                    "Remover");
+
+    }
+    removerSlide(id){
+
+        this.models.removerSlide(id);
+
+    }
+
+
+
+
     cmsInfosHome(){
 
       this.views.cmsInfosHome();
+      this.models.cmsInfosHome();
+
+    }
+
+    procOutrasInfos(){
+      
+      this.models.procOutrasInfos();
+
+    }
+
+
+    cmsSobre(){
+       
+       this.views.cmsSobre();
+       this.models.cmsSobre();
+
+    }
+
+    procCmsSobre(){
+
+      this.models.procCmsSobre();
 
     }
 
@@ -781,6 +833,11 @@ class App {
         // SLIDES
         if(tipo==2){
           localStorage.setItem("destinoImagens","slides");
+        }
+
+        // PAGINA SOBRE
+        if(tipo==3){
+          localStorage.setItem("destinoImagens","sobre");
         }
 
     }

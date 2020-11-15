@@ -286,6 +286,10 @@ $(document).ready(function() {
                   app.views.popularImagensUpload(dados);
                 }
 
+                if(localStorage.getItem("destinoImagens")=="sobre"){
+                  app.views.popularImagensUpload(dados);
+                }
+
             }else{
 
               fecharAviso();

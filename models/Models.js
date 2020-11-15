@@ -2530,6 +2530,340 @@ procAdicionarSlide(){
 }
 
 
+editarSlide(idSlide){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-editar-slide.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idSlide='+idSlide+
+                     "&token="+app.token;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("RETORNO DOS DADOS OBTER SLIDE:");
+              var dados = JSON.parse(xhr.responseText);
+              console.log(dados);
+
+              app.views.popularEditarSlides(dados);
+             
+            }else{
+              
+              console.log("SEM SUCESSO editarSlide()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+}
+
+
+procEditarSlide(){
+
+       // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-proc-editar-slide.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Slide atualizado com sucesso!","O slide foi atualizado.");
+
+            }else{
+              
+              console.log("SEM SUCESSO procEditarSlide()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Adicionar");
+      $(".form-control").removeAttr("readonly");
+
+}
+
+removerSlide(id){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-remover-slide.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token+"&id="+id;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS REMOVER SLIDE:");
+                console.log(JSON.parse(xhr.responseText));
+                $("#linha"+id).fadeOut("500");
+                aviso("Deu certo!","Slide foi removido com sucesso");
+
+              }else{
+                
+                console.log("SEM SUCESSO removerSlide()");
+                console.log(JSON.parse(xhr.responseText));
+                aviso("<b>Oops! Algo deu errado</b>","Tente novamente em alguns minutos");
+
+              }
+
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+}
+
+
+
+cmsInfosHome(){
+   
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-cms-infos-home.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS INFOS HOMEPAGE:");
+                console.log(JSON.parse(xhr.responseText));
+
+                var dados = JSON.parse(xhr.responseText);
+
+                app.views.popularOutrasInfos(dados);
+                
+
+
+              }else{
+                
+                console.log("SEM SUCESSO cmsInfosHome()");
+                console.log(JSON.parse(xhr.responseText));
+                aviso("<b>Oops! Algo deu errado</b>","Tente novamente em alguns minutos");
+
+              }
+
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+
+}
+
+
+
+procOutrasInfos(){
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-cms-proc-atualizar-homepage.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Dados atualizados com sucesso!","As informações da homepage foram atualizadas com sucesso");
+
+            }else{
+              
+              console.log("SEM SUCESSO procOutrasInfos()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Atualizar");
+      $(".form-control").removeAttr("readonly");
+
+
+
+}
+
+
+
+
+cmsSobre(){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-cms-sobre.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS CMS SOBRE:");
+                console.log(JSON.parse(xhr.responseText));
+
+                var dados = JSON.parse(xhr.responseText);
+
+                app.views.popularSobre(dados);
+                
+
+              }else{
+                
+                console.log("SEM SUCESSO cmsSobre()");
+                console.log(JSON.parse(xhr.responseText));
+                aviso("<b>Oops! Algo deu errado</b>","Tente novamente em alguns minutos");
+
+              }
+
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+}
+
+
+procCmsSobre(){
+        
+        // SALVAR O TINYMCE
+        tinymce.triggerSave();
+
+        
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-proc-cms-sobre.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Página sobre atualizada com sucesso!","A página foi atualizada.");
+
+
+            }else{
+              
+              console.log("SEM SUCESSO procCmsSobre()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Adicionar");
+      $(".form-control").removeAttr("readonly");
+
+}
+
+
 
 
 }

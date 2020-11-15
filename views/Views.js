@@ -179,6 +179,7 @@ class Views{
                                <table class="table table-striped">
                                    <thead>
                                       <th>#</th>
+                                      <th>REF</th>
                                       <th>Nome</th>
                                       <th>Views</th>
                                       <th></th>
@@ -2323,6 +2324,7 @@ class Views{
                                <table class="table table-striped">
                                    <thead>
                                       <th>#</th>
+                                      <th>REF</th>
                                       <th>Nome</th>
                                       <th>Views</th>
                                       <th></th>
@@ -2390,6 +2392,7 @@ class Views{
                           return `
                             <tr id="linha${n.id}">
                               <td>${n.id}</td>
+                              <td>${n.ref}</td>
                               <td>${n.nome}</td>
                               <td>${visualizacoes}</td>
                               <td>
@@ -2435,6 +2438,8 @@ class Views{
 
     }
     adicionarImoveis(tipoImoveis){
+
+      $(".sidemenu nav ul li").removeClass("ativo");
 
       this._content.html(`
                
@@ -2652,6 +2657,47 @@ class Views{
                                                           </div>
                                                       </div>
 
+
+
+
+                                                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                          <div class="form-group">
+                                                             <label>Área metros</label>
+                                                             <select class="form-control" name="id_area_metros" id="id_area_metros">
+                                                                <option value="">Selecione uma opção</option>
+                                                             </select>
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                          <div class="form-group">
+                                                             <label>N quartos</label>
+                                                             <select class="form-control" name="id_quartos" id="id_quartos">
+                                                                <option value="">N/A</option>
+                                                             </select>
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                          <div class="form-group">
+                                                             <label>N vagas</label>
+                                                             <select class="form-control" name="id_vagas" id="id_vagas">
+                                                                <option value="">N/A</option>
+                                                             </select>
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                          <div class="form-group">
+                                                             <label>N banheiros</label>
+                                                             <select class="form-control" name="id_banheiros" id="id_banheiros">
+                                                                <option value="">N/A</option>
+                                                             </select>
+                                                          </div>
+                                                      </div>
+
+
+
+
+
+
                                                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 no-padding-left-desktop">
                                                           
                                                           <div class="form-group">
@@ -2745,7 +2791,7 @@ class Views{
 
     nextRef(dados){
         
-        $("#imoveisRef").val("RMN"+dados.next);
+        $("#imoveisRef").val("RMI"+dados.next);
 
     }
 
@@ -2759,6 +2805,11 @@ class Views{
       $("#id_pagto1").html(`<option value="">Selecione uma opção</option>`);
       $("#id_pagto2").html(`<option value="">N/A</option>`);
       $("#id_pagto3").html(`<option value="">N/A</option>`);
+
+      $("#id_area_metros").html(`<option value="">N/A</option>`);
+      $("#id_quartos").html(`<option value="">N/A</option>`);
+      $("#id_vagas").html(`<option value="">N/A</option>`);
+      $("#id_banheiros").html(`<option value="">N/A</option>`);
       
       var required = "";
 
@@ -2819,6 +2870,51 @@ class Views{
             }).join('')}
 
       `);
+
+
+
+
+
+
+
+       $("#id_area_metros").append(`
+
+            ${dados.campos.map((n) => {
+                  return `
+                      <option value="${n.id}">${n.nome_campo}</option>
+                  `
+            }).join('')}
+
+      `);
+       $("#id_quartos").append(`
+
+            ${dados.campos.map((n) => {
+                  return `
+                      <option value="${n.id}">${n.nome_campo}</option>
+                  `
+            }).join('')}
+
+      `);
+       $("#id_vagas").append(`
+
+            ${dados.campos.map((n) => {
+                  return `
+                      <option value="${n.id}">${n.nome_campo}</option>
+                  `
+            }).join('')}
+
+      `);
+       $("#id_banheiros").append(`
+
+            ${dados.campos.map((n) => {
+                  return `
+                      <option value="${n.id}">${n.nome_campo}</option>
+                  `
+            }).join('')}
+
+      `);
+
+
 
     }
 
@@ -2896,6 +2992,8 @@ class Views{
 
 
     editarImoveis(){
+
+      $(".sidemenu nav ul li").removeClass("ativo");
 
       this._content.html(`
                
@@ -3130,6 +3228,42 @@ class Views{
                                                                                   </div>
                                                                               </div>
 
+
+                                                                              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                                                  <div class="form-group">
+                                                                                     <label>Área metros</label>
+                                                                                     <select class="form-control" name="id_area_metros" id="id_area_metros">
+                                                                                        <option value="">Selecione uma opção</option>
+                                                                                     </select>
+                                                                                  </div>
+                                                                              </div>
+                                                                              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                                                  <div class="form-group">
+                                                                                     <label>N quartos</label>
+                                                                                     <select class="form-control" name="id_quartos" id="id_quartos">
+                                                                                        <option value="">N/A</option>
+                                                                                     </select>
+                                                                                  </div>
+                                                                              </div>
+                                                                              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                                                  <div class="form-group">
+                                                                                     <label>N vagas</label>
+                                                                                     <select class="form-control" name="id_vagas" id="id_vagas">
+                                                                                        <option value="">N/A</option>
+                                                                                     </select>
+                                                                                  </div>
+                                                                              </div>
+                                                                              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 no-padding-left-desktop">
+                                                                                  <div class="form-group">
+                                                                                     <label>N banheiros</label>
+                                                                                     <select class="form-control" name="id_banheiros" id="id_banheiros">
+                                                                                        <option value="">N/A</option>
+                                                                                     </select>
+                                                                                  </div>
+                                                                              </div>
+
+
+
                                                                               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 no-padding-left-desktop">
                                                                                   
                                                                                   <div class="form-group">
@@ -3318,6 +3452,13 @@ class Views{
                 $("#id_pagto1").html(`<option value="">Selecione uma opção</option>`);
                 $("#id_pagto2").html(`<option value="">N/A</option>`);
                 $("#id_pagto3").html(`<option value="">N/A</option>`);
+
+                $("#id_area_metros").html(`<option value="">N/A</option>`);
+                $("#id_quartos").html(`<option value="">N/A</option>`);
+                $("#id_vagas").html(`<option value="">N/A</option>`);
+                $("#id_banheiros").html(`<option value="">N/A</option>`);
+
+
                 
                 $("#id_pagto1").append(`
 
@@ -3350,9 +3491,54 @@ class Views{
                 `);
 
 
+
+
+                 $("#id_area_metros").append(`
+
+                      ${dados.campos.map((n) => {
+                            return `
+                                <option value="${n.id}">${n.nome_campo}</option>
+                            `
+                      }).join('')}
+
+                `);
+                 $("#id_quartos").append(`
+
+                      ${dados.campos.map((n) => {
+                            return `
+                                <option value="${n.id}">${n.nome_campo}</option>
+                            `
+                      }).join('')}
+
+                `);
+                 $("#id_vagas").append(`
+
+                      ${dados.campos.map((n) => {
+                            return `
+                                <option value="${n.id}">${n.nome_campo}</option>
+                            `
+                      }).join('')}
+
+                `);
+                 $("#id_banheiros").append(`
+
+                      ${dados.campos.map((n) => {
+                            return `
+                                <option value="${n.id}">${n.nome_campo}</option>
+                            `
+                      }).join('')}
+
+                `);
+
+
         $('[name ="id_pagto1"]').val(dados.imovel[0].id_pagto1);
         $('[name ="id_pagto2"]').val(dados.imovel[0].id_pagto2);
         $('[name ="id_pagto3"]').val(dados.imovel[0].id_pagto3);
+
+        $('[name ="id_area_metros"]').val(dados.imovel[0].id_area_metros);
+        $('[name ="id_quartos"]').val(dados.imovel[0].id_quartos);
+        $('[name ="id_vagas"]').val(dados.imovel[0].id_vagas);
+        $('[name ="id_banheiros"]').val(dados.imovel[0].id_banheiros);
 
 
         // ALIMENTAR AS IMAGENS
@@ -3380,7 +3566,11 @@ class Views{
 
         // ATUALIZAR SEO
         $("#idImoveEditarForSeo").val(dados.imovel[0].id);
-        $("#campoImoveEditarForSeo").val(dados.seo_imovel[0].valor);
+
+        if(dados.seo_imovel){
+          $("#campoImoveEditarForSeo").val(dados.seo_imovel[0].valor);
+        }
+        
         
 
         // CARREGAR MASCARAS
@@ -3683,7 +3873,7 @@ class Views{
                                                       <i class="fa fa-search" aria-hidden="true"></i>
                                                    </span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Faça uma pesquisa" onkeyup="app.filtrotabelaSlides();" id="filtroTabelaSlides">
+                                                <input type="text" class="form-control" placeholder="Faça uma pesquisa" onkeyup="app.filtroTabelaSlides();" id="filtroTabelaSlides">
                                             </div>
                                      </div>
                                      <!-- BUSCA AVULSA -->
@@ -3905,8 +4095,607 @@ class Views{
 
 
 
+    editarSlide(){
+
+      this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsHomepage()" title="">
+                                        Homepage
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsSlides();" title="">
+                                        Slides (banners rotativos)
+                                    </a>
+                                    <span>/</span>
+                                    <a href="#" title="">
+                                        Editar slide <span class="nomeSlideEdicao"></span>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Editar Slide <span class="nomeSlideEdicao"></span></h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procEditarSlide(event)">
+                                            
+                                        <input type="hidden" name="idSlideEditar" id="idSlideEditar" value="" />
+                                            
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                      <!-- COLUNA UM -->
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Link de destino ao clicar</label>
+                                                             <input type="text" class="form-control" name="link" id="link" placeholder="Link de destino ao clicar" required />
+                                                          </div>
+
+                                                      </div>
+                                                      <!-- COLUNA UM -->
+
+                                                      <!-- COLUNA DOIS -->
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Nome do banner (para SEO)</label>
+                                                             <input type="text" class="form-control" name="nome_seo" id="nome_seo" placeholder="Nome do banner para SEO" required />
+                                                          </div>
+
+                                                      </div>
+                                                      <!-- COLUNA DOIS -->
 
 
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Atualizar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              <!-- COL 4 -->
+                                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 no-padding-left-desktop galeria-imovel">
+                                                  <h4 style="font-size: 15px;margin-bottom: 14px;text-align: center;">Imagem do slide</h4>
+                                                  
+                                                  <div class="card blank" data-accept="draggable">
+                                                     <p style="text-align:center;font-size:12px;">
+                                                         Nenhuma imagem ainda
+                                                     </p>
+                                                  </div>
+
+                                                  <p style="text-align:right;padding-top:12.5px;">
+                                                      <a href="javascript:void(0)" title="Adicionar imagem" onclick="app.defineDestinyImages(2)" data-toggle="modal" data-target="#modalUploadImages" class="btn btn-default">
+                                                         Adicionar imagem
+                                                      </a>
+                                                  </p>
+
+                                              </div>
+                                              <!-- COL 4 -->
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+    }
+
+    popularEditarSlides(dados){
+         
+         $("#idSlideEditar").val(dados.slide[0].id);
+         $("#link").val(dados.slide[0].link);
+         $("#nome_seo").val(dados.slide[0].nome_seo);
+
+         // ALIMENTAR AS IMAGENS
+         for(var i = 0;i<dados.slide.length;i++){
+              
+            $(".card").append(`
+
+              <div class="caixa-preview-imagem-carregada draggable" data-id="${dados.slide[i].id}" data-url="${dados.slide[i].url}" ondrag="processarDrag()" id="caixaPreviewImagemCarregada${dados.slide[i].id}">
+                    <div style="margin-left:auto;margin-right:auto;position:relative;display:block;width:100px;height:100px;border-radius:8px;background:url('${app.urlCdn}${dados.slide[i].url}') #f2f2f2 no-repeat;background-size:cover;background-position:center center;">
+                       &nbsp;
+                    </div>
+                    <p>
+                      <a href="javascript:void(0)" onclick="app.views.removerImagemGaleriaImagens(${dados.slide[i].id})" title="Remover essa imagem" style="font-size:13px;color:#ff0000;">
+                        <i class="fa fa-times"></i> remover
+                      </a>
+                    </p>
+               </div>
+
+            `);
+
+          }
+
+        processarDrag();
+
+    }
+
+
+    
+    cmsInfosHome(){
+       
+       this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsHomepage()" title="">
+                                        Homepage
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsSlides();" title="">
+                                        Outras infos (homepage)
+                                    </a> 
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Editar informações homepage</h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procOutrasInfos(event)">
+                                            
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                     
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Imóvel de destaque 1</label>
+                                                             <select class="form-control" name="id_destaque" id="id_destaque">
+                                                               <option value="">Selecione uma opção</option>
+                                                             </select>
+                                                          </div>
+
+                                                      </div>
+                                                      
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Título destaque</label>
+                                                             <input type="text" class="form-control" name="titulo_desc" id="titulo_desc" placeholder="Título destaque" />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Texto destaque coluna 1</label>
+                                                             <textarea rows="4" class="form-control" name="texto_desc" id="texto_desc" placeholder="Texto descrição coluna 1"  ></textarea>
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Texto destaque coluna 2</label>
+                                                             <textarea rows="4" class="form-control" name="texto_desc2" id="texto_desc2" placeholder="Texto descrição coluna 2"  ></textarea>
+                                                          </div>
+
+                                                      </div>
+
+
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Imóvel de destaque 2</label>
+                                                             <select class="form-control" name="id_destaque2" id="id_destaque2">
+                                                               <option value="">Selecione uma opção</option>
+                                                             </select>
+                                                          </div>
+
+                                                      </div>
+
+
+
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Título CRECI</label>
+                                                             <input type="text" class="form-control" name="titulo_creci" id="titulo_creci" placeholder="Título CRECI"  />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Telefone CRECI</label>
+                                                             <input type="text" class="form-control" name="telefone_creci" id="telefone_creci" placeholder="Telefone CRECI"  />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Endereço CRECI</label>
+                                                             <input type="text" class="form-control" name="endereco_creci" id="endereco_creci" placeholder="Endereço CRECI"  />
+                                                          </div>
+
+                                                      </div>
+
+
+
+
+                                                      <div class="col-6 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Iframe mapa</label>
+                                                             <textarea rows="4" class="form-control" name="iframe_mapa" id="iframe_mapa" placeholder="Iframe do mapa"  ></textarea>
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-6 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Texto destaque mapa</label>
+                                                             <textarea rows="4" class="form-control" name="desc_mapa" id="desc_mapa" placeholder="Descrição ao lado do mapa"  ></textarea>
+                                                          </div>
+
+                                                      </div>
+
+
+
+
+
+
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Título Rodapé</label>
+                                                             <input type="text" class="form-control" name="titulo_pos_rodape" id="titulo_pos_rodape" placeholder="Título rodapé"  />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Telefone rodapé</label>
+                                                             <input type="text" class="form-control" name="telefone_rodape" id="telefone_rodape" placeholder="Telefone rodapé"  />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-4 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>Tags</label>
+                                                             <input type="text" class="form-control" name="tags" id="tags" placeholder="Tags separadas por vírgula"  />
+                                                          </div>
+
+                                                      </div>
+
+
+
+
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>SEO homepage</label>
+                                                             <textarea class="form-control" rows="7" name="seo_homepage" id="seo_homepage" placeholder="Tags SEO homepage"></textarea>
+                                                          </div>
+
+                                                      </div>
+
+
+
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Atualizar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+
+    }
+
+
+    popularOutrasInfos(dados){
+
+
+          // ALIMENTAR A LISTA DE IMÓVEIS
+          for(var i=0;i<dados.imoveis.length;i++){
+
+               $("#id_destaque").append(`
+                   
+                   <option value="${dados.imoveis[i].id}">${dados.imoveis[i].ref} - ${dados.imoveis[i].nome}</option>
+
+               `);
+
+               $("#id_destaque2").append(`
+                   
+                   <option value="${dados.imoveis[i].id}">${dados.imoveis[i].ref} - ${dados.imoveis[i].nome}</option>
+
+               `);
+
+          }
+
+          // PREENCHER OS DADOS JÁ SALVOS
+          $("#id_destaque").val(dados.infos_home[0].id_destaque);
+          $("#titulo_desc").val(dados.infos_home[0].titulo_desc);
+          $("#texto_desc").val(dados.infos_home[0].texto_desc);
+          $("#texto_desc2").val(dados.infos_home[0].texto_desc2);
+          $("#id_destaque2").val(dados.infos_home[0].id_destaque2);
+          $("#titulo_creci").val(dados.infos_home[0].titulo_creci);
+          $("#telefone_creci").val(dados.infos_home[0].telefone_creci);
+          $("#endereco_creci").val(dados.infos_home[0].endereco_creci);
+          $("#iframe_mapa").val(dados.infos_home[0].iframe_mapa);
+          $("#desc_mapa").val(dados.infos_home[0].desc_mapa);
+          $("#titulo_pos_rodape").val(dados.infos_home[0].titulo_pos_rodape);
+          $("#telefone_rodape").val(dados.infos_home[0].telefone_rodape);
+          $("#tags").val(dados.infos_home[0].tags);
+          $("#seo_homepage").val(dados.infos_home[0].seo_homepage);
+
+
+    }
+
+
+    cmsSobre(){
+
+        this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" title="Página Sobre">
+                                        Página Sobre
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Editar informações página Sobre</h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procCmsSobre(event)">
+                                            
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Título da página</label>
+                                                             <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Título da página" />
+                                                          </div>
+
+                                                      </div>
+
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Texto (conteúdo) da página</label>
+                                                             <textarea name="texto" id="texto" class="form-control tx" rows="12" placeholder="Conteúdo da página"></textarea>
+                                                          </div>
+
+                                                      </div>
+                                                      
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>SEO da página</label>
+                                                             <textarea class="form-control" rows="7" name="seo_homepage" id="seo_homepage" placeholder="Tags SEO página sobre"></textarea>
+                                                          </div>
+
+                                                      </div>
+
+
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Atualizar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 no-padding-left-desktop galeria-imovel">
+                                                  <h4 style="font-size: 15px;margin-bottom: 14px;text-align: center;">Imagens do Imóvel</h4>
+                                                  
+                                                  <div class="card blank" data-accept="draggable">
+                                                     <p style="text-align:center;font-size:12px;">
+                                                         Nenhuma imagem ainda
+                                                     </p>
+                                                  </div>
+
+                                                  <p style="text-align:right;padding-top:12.5px;">
+                                                      <a href="javascript:void(0)" title="Adicionar imagens" onclick="app.defineDestinyImages(3)" data-toggle="modal" data-target="#modalUploadImages" class="btn btn-default">
+                                                         Adicionar imagens
+                                                      </a>
+                                                  </p>
+
+                                              </div>
+
+                                              
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+
+    }
+    
+    popularSobre(dados){
+      
+      // ALIMENTAR OS DEMAIS CAMPOS
+      $("#titulo").val(dados.sobre[0].titulo);
+      $("#texto").val(dados.sobre[0].texto);
+      $("#seo_homepage").val(dados.sobre[0].seo);
+      
+      // DESTRUIR EVENTUAL TINYMCE PREVIAMENTE CRIADO
+      setTimeout(function () {
+
+          tinymce.EditorManager.remove('.tx');
+          
+      }, 1500);
+      
+      // É NECESSÁRIO TER UM DELAY PARA FUNCIONAR A REINICIALIZAÇÃO DO TINYMCE
+      setTimeout(function () {
+      
+          // INSTANCIAR O TINYMCE
+          tinymce.init({
+              selector: "textarea.tx",    
+              theme: "modern",
+              menubar: false,
+              language: "pt_BR",
+              toolbar1: "undo redo | bold italic alignleft aligncenter alignright alignjustify link"
+          });
+
+      }, 3000);
+
+      // CARREGAR A IMAGEM DE CAPA
+      // ALIMENTAR AS IMAGENS
+      $(".card").append(`
+
+               <div class="caixa-preview-imagem-carregada draggable" data-id="${dados.sobre[0].id}" data-url="${dados.sobre[0].capa}" ondrag="processarDrag()" id="caixaPreviewImagemCarregada${dados.sobre[0].id}">
+                    <div style="margin-left:auto;margin-right:auto;position:relative;display:block;width:100px;height:100px;border-radius:8px;background:url('${app.urlCdn}${dados.sobre[0].capa}') #f2f2f2 no-repeat;background-size:cover;background-position:center center;">
+                       &nbsp;
+                    </div>
+                    <p>
+                      <a href="javascript:void(0)" onclick="app.views.removerImagemGaleriaImagens(${dados.sobre[0].id})" title="Remover essa imagem" style="font-size:13px;color:#ff0000;">
+                        <i class="fa fa-times"></i> remover
+                      </a>
+                    </p>
+               </div>
+
+      `);
+
+        processarDrag();
+       
+    }
 
 
 
