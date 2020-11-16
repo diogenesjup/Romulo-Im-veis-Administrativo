@@ -16,7 +16,7 @@ class Views{
        this.carregandoTabela = `
 
             <tr class="carregandoTabela">
-               <td style="position:relative;display:block;text-align:center;padding: 40px;padding-bottom: 70px;">
+               <td colspan="10" style="position:relative;display:block;text-align:center;padding: 40px;padding-bottom: 70px;">
              
                   <p>
                      <img src="assets/images/loading.gif" alt="Carregando" style="width:24px;" />
@@ -2934,14 +2934,10 @@ class Views{
 
        console.log("ESSE É O TAMANHO DOS DADOS: ");
        console.log(dados.dados.length);
-
-       
        
        // ALIMENTAR TANTO OS PREVIEWS, COMO TAMBÉM OS INPUTS
        for(var i = 0;i < dados.dados.length; i++){
 
-         
-          
           $(".card").append(`
 
                
@@ -2956,11 +2952,9 @@ class Views{
                           </p>
                        </div>
                        
-                    
-
+    
           `);
 
-          
 
           $("#formAddImoveis").append(`
 
@@ -2970,15 +2964,12 @@ class Views{
 
        }
 
-
        // ARRASTAR E SOLTAR PARA ORDENAÇÃO DAS FOTOS
        $('.draggable').draggable({
             revert: true,
             snapTolerance: 30,
             revertDuration: 0
         });
-
-       
 
     }
 
@@ -4659,7 +4650,7 @@ class Views{
       setTimeout(function () {
 
           tinymce.EditorManager.remove('.tx');
-          
+
       }, 1500);
       
       // É NECESSÁRIO TER UM DELAY PARA FUNCIONAR A REINICIALIZAÇÃO DO TINYMCE
@@ -4695,6 +4686,736 @@ class Views{
 
         processarDrag();
        
+    }
+
+
+
+
+    cmsContato(){
+
+        this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" title="Página Sobre">
+                                        Página e informações de contato (geral do site)
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Editar informações de contato</h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procCmsContato(event)">
+                                            
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Título da página</label>
+                                                             <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Título da página" />
+                                                          </div>
+
+                                                      </div>
+
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Texto (conteúdo) da página</label>
+                                                             <textarea name="texto" id="texto" class="form-control tx" rows="12" placeholder="Conteúdo da página"></textarea>
+                                                          </div>
+
+                                                      </div>
+
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>E-mail destino</label>
+                                                             <input type="text" class="form-control" name="email_destino" id="email_destino" placeholder="E-mail de destino formulário de contato" />
+                                                          </div>
+
+                                                      </div>
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>E-mail destino trabalhe conosco</label>
+                                                             <input type="text" class="form-control" name="email_destino_trabalhe" id="email_destino_trabalhe" placeholder="E-mail de destino formulário de trabalhe conosco" />
+                                                          </div>
+
+                                                      </div>
+
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Perfil Facebook</label>
+                                                             <input type="text" class="form-control" name="facebook" id="facebook" placeholder="URL Facebook" />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Perfil Linkedin</label>
+                                                             <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="URL Linkedin" />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Perfil Instagram</label>
+                                                             <input type="text" class="form-control" name="instagram" id="instagram" placeholder="URL Instagram" />
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Perfil WhatsApp</label>
+                                                             <input type="text" class="form-control" name="whatsapp" id="whatsapp" placeholder="Link integração WhatsApp" />
+                                                          </div>
+
+                                                      </div>
+                                                      
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                          
+                                                          <div class="form-group">
+                                                             <label>SEO da página</label>
+                                                             <textarea class="form-control" rows="7" name="seo" id="seo" placeholder="Tags SEO página contato"></textarea>
+                                                          </div>
+
+                                                      </div>
+
+
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Atualizar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              
+
+                                              
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+
+    }
+
+
+
+    popularContato(dados){
+      
+      // ALIMENTAR OS DEMAIS CAMPOS
+      $("#titulo").val(dados.contato[0].titulo);
+      $("#texto").val(dados.contato[0].texto);
+      $("#seo").val(dados.contato[0].seo);
+
+      $("#email_destino").val(dados.contato[0].email_destino);
+      $("#email_destino_trabalhe").val(dados.contato[0].email_destino_trabalhe);
+      $("#facebook").val(dados.contato[0].facebook);
+      $("#linkedin").val(dados.contato[0].linkedin);
+      $("#instagram").val(dados.contato[0].instagram);
+      $("#whatsapp").val(dados.contato[0].whatsapp);
+
+
+      // DESTRUIR EVENTUAL TINYMCE PREVIAMENTE CRIADO
+      setTimeout(function () {
+
+          tinymce.EditorManager.remove('.tx');
+
+      }, 1500);
+      
+      // É NECESSÁRIO TER UM DELAY PARA FUNCIONAR A REINICIALIZAÇÃO DO TINYMCE
+      setTimeout(function () {
+      
+          // INSTANCIAR O TINYMCE
+          tinymce.init({
+              selector: "textarea.tx",    
+              theme: "modern",
+              menubar: false,
+              language: "pt_BR",
+              toolbar1: "undo redo | bold italic alignleft aligncenter alignright alignjustify link"
+          });
+
+      }, 3000);
+
+        processarDrag();
+       
+    }
+
+
+
+cmsNoticias(){
+
+           this._content.html(`
+            
+              <div class="container">
+                 
+                   <div class="row view-acessosAdmin" view-name="view-acessosAdmin">
+                       <div class="col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                           
+                           <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="#" title="Notícias">
+                                        Notícias
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+
+                           <!-- TÍTULOS DA PÁGINAS --> 
+                           <h4>Notícias</h4>
+                           <p>Gerencie as notícias cadastradas na plataforma</p>
+                           <p>&nbsp;</p>
+                           <!-- TÍTULOS DA PÁGINAS -->
+                           
+                           <div class="row">
+                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 offset-xl-7 offset-lg-7 offset-md-7 offset-sm-7" style="padding-right:0px;">
+                                     
+                                     <a href="javascript:void(0)" style="float: right;" onclick="app.adicionarNoticia()" class="btn btn-primary" title="Adicionar nova notícia">
+                                       <i class="fa fa-plus"></i> Adicionar
+                                    </a>
+
+                                     <!-- BUSCA AVULSA -->
+                                     <div class="busca-avulsa">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                   <span class="input-group-text">
+                                                      <i class="fa fa-search" aria-hidden="true"></i>
+                                                   </span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Faça uma pesquisa" onkeyup="app.filtrotabelaNoticias();" id="filtroTabelaNoticias">
+                                            </div>
+                                     </div>
+                                     <!-- BUSCA AVULSA -->
+
+                                    
+                              </div>
+                           </div>
+                           <div class="table-responsive">
+                               
+                               <table class="table table-striped">
+                                   <thead>
+                                      <th>#</th>
+                                      <th>Título</th>
+                                      <th>Resumo</th>
+                                      <th>Capa</th>
+                                      <th>Data postagem</th>
+                                      
+                                      <th style="width:125px;">Ações</th>
+                                   </thead>
+
+                                   <tbody id="conteudoNoticias">
+                                      ${this.carregandoTabela}
+                                   </tbody>
+
+                               </table>
+
+                           </div>
+                           
+                           <div class="text-right">
+                              <a href="javascript:void(0)" onclick="app.adicionarNoticia()" class="btn btn-primary" title="Adicionar nova notícia">
+                                 <i class="fa fa-plus"></i> Adicionar
+                              </a>
+                              
+                           </div>
+
+
+                       </div>
+                   </div>
+
+              </div>
+
+        `);
+
+        this.animarTransicao();
+      
+
+    }
+    popularNoticias(dados){
+
+         
+         if(dados.sucesso=="200"){
+
+             $(".carregandoTabela").hide(0);
+
+             if(dados.noticias.length==0){
+
+                aviso("Sem informações para mostrar","Nenhuma notícia cadastrada");
+             
+             }
+         
+             $("#conteudoNoticias").html(`
+                  
+                   ${dados.noticias.map((n) => {
+
+                          return `
+                            <tr id="linha${n.id}">
+                              <td>${n.id}</td>
+                              <td>${n.titulo}</td>
+                              <td>${n.resumo}</td>
+
+                              <td>
+                                  <img src="${app.urlCdn}${n.capa}" style="width:120px;height:auto;" alt="${n.titulo}" />
+                              </td>
+
+                              <td>${n.data_postagem}</td>
+                              
+                              <td style="width:125px;">
+                                  
+                                  <a href="javascript:void(0)" onclick="app.perguntarRemoverNoticia(${n.id})" class="btn btn-warning btn-sm" title="Apagar">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+
+                                  <a href="javascript:void(0)" onclick="app.editarNoticia(${n.id})" class="btn btn-primary btn-sm" title="Editar">
+                                     <i class="fa fa-pencil"></i>
+                                  </a>
+
+                                  <a href="javascript:void(0)" class="btn btn-primary btn-sm" title="Visualizar essa notícia">
+                                     <i class="fa fa-eye"></i>
+                                  </a>
+
+                              </td>
+                            </tr>
+                          `
+
+                    }).join('')}
+
+
+             `);
+
+         }else{
+
+          aviso("Oops! Algo deu errado","Não conseguimos recuperar as informações, tente novamente em alguns minutos.");
+         
+         }
+
+    }
+
+
+
+
+adicionarNoticia(){
+
+      this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsNoticias();" title="Notíticas">
+                                        Notícias
+                                    </a>
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" title="Adicionar notícia">
+                                        Adicionar notícia
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Adicionar Notícia</h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procAdicionarNotícia(event)">
+                                        
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Título da notícia</label>
+                                                             <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Título da notícia" required />
+                                                          </div>
+
+                                                      </div>
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Resumo da notícia</label>
+                                                             <textarea name="resumo" id="resumo" class="form-control" rows="5" placeholder="Resumo da notícia"></textarea>
+                                                          </div>
+
+                                                      </div>
+                                                      
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Texto (conteúdo) da notícia</label>
+                                                             <textarea name="texto" id="texto" class="form-control tx" rows="12" placeholder="Conteúdo da notícia"></textarea>
+                                                          </div>
+
+                                                      </div>
+
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                      
+                                                          <div class="form-group">
+                                                              <label>Tags SEO</label>
+                                                              <textarea name="seo" id="seo" class="form-control" rows="12" placeholder="Insira as tags de SEO nesse campo."></textarea>
+                                                          </div>
+
+                                                      </div>
+
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Adicionar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              <!-- COL 4 -->
+                                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 no-padding-left-desktop galeria-imovel">
+                                                  <h4 style="font-size: 15px;margin-bottom: 14px;text-align: center;">Imagem de capa da notícia</h4>
+                                                  
+                                                  <div class="card blank" data-accept="draggable">
+                                                     <p style="text-align:center;font-size:12px;">
+                                                         Nenhuma imagem ainda
+                                                     </p>
+                                                  </div>
+
+                                                  <p style="text-align:right;padding-top:12.5px;">
+                                                      <a href="javascript:void(0)" title="Adicionar imagem" onclick="app.defineDestinyImages(4)" data-toggle="modal" data-target="#modalUploadImages" class="btn btn-default">
+                                                         Adicionar imagem
+                                                      </a>
+                                                  </p>
+
+                                              </div>
+                                              <!-- COL 4 -->
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+        // DESTRUIR EVENTUAL TINYMCE PREVIAMENTE CRIADO
+        setTimeout(function () {
+
+            tinymce.EditorManager.remove('.tx');
+
+        }, 1500);
+        
+        // É NECESSÁRIO TER UM DELAY PARA FUNCIONAR A REINICIALIZAÇÃO DO TINYMCE
+        setTimeout(function () {
+        
+            // INSTANCIAR O TINYMCE
+            tinymce.init({
+                selector: "textarea.tx",    
+                theme: "modern",
+                menubar: false,
+                language: "pt_BR",
+                toolbar1: "undo redo | bold italic alignleft aligncenter alignright alignjustify link"
+            });
+
+        }, 3000);
+
+
+
+    }
+
+
+
+
+    editarNoticia(){
+
+      this._content.html(`
+               
+               <div class="container">
+               
+                 <div class="row view-adicionarSlider" view-name="view-adicionarSlider">
+
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 wow fadeInLeft" data-wow-delay="0.0s" data-wow-duration="0.3s">
+                            
+                            <!-- BREADCRUMB -->
+                            <div class="row breadcrumb">
+                                <div class="col-12">
+                                    <a href="javascript:void(0)" onclick="app.cms();" title="CMS">
+                                        CMS
+                                    </a>
+                                    
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" onclick="app.cmsNoticias();" title="Notícias">
+                                        Notícias
+                                    </a>
+
+                                    <span>/</span>
+                                    <a href="javascript:void(0)" title="Editar notícia">
+                                        Editar notícia <span class="nomeNoticiaEdicao"></span>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <!-- BREADCRUMB -->
+
+                            <div class="area-formulario">
+
+                                    <h4>Editar Notícia <span class="nomeNoticiaEdicao"></span></h4>
+                                    <p>&nbsp;</p>
+
+                                    <form id="formAddImoveis" method="post" action="javascript:void(0)" onsubmit="app.procEditarNoticia(event)">
+                                            
+                                        <input type="hidden" name="idNoticiaEditar" id="idNoticiaEditar" value="" />
+                                            
+                                        <!-- ROW -->
+                                        <div class="row">
+                                        
+                                              <!-- COL 9 -->
+                                              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 no-padding-left-desktop">
+
+                                                  <div class="row">
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Título da notícia</label>
+                                                             <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Título da notícia" required />
+                                                          </div>
+
+                                                      </div>
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Resumo da notícia</label>
+                                                             <textarea name="resumo" id="resumo" class="form-control" rows="5" placeholder="Resumo da notícia"></textarea>
+                                                          </div>
+
+                                                      </div>
+                                                      
+
+                                                      <div class="col-12 no-padding-left-desktop">
+
+                                                          <div class="form-group">
+                                                             <label>Texto (conteúdo) da notícia</label>
+                                                             <textarea name="texto" id="texto" class="form-control tx" rows="12" placeholder="Conteúdo da notícia"></textarea>
+                                                          </div>
+
+                                                      </div>
+
+                                                      
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                      
+                                                          <div class="form-group">
+                                                              <label>Tags SEO</label>
+                                                              <textarea name="seo" id="seo" class="form-control" rows="12" placeholder="Insira as tags de SEO nesse campo."></textarea>
+                                                          </div>
+
+                                                      </div>
+
+                                                  </div>
+
+                                  
+                                                  <!-- BOTAO DE ENVIAR -->
+                                                  <div class="row">
+                                                      <div class="col-12 no-padding-left-desktop">
+                                                           <div class="form-group text-right">
+                                                             <button type="submit" class="btn btn-primary" id="btnAddItem">Atualizar</button>
+                                                           </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- BOTAO DE ENVIAR -->
+
+                                                  </form>
+
+                                              </div>
+                                              <!-- COL 9 -->
+
+                                              <!-- COL 4 -->
+                                              <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 no-padding-left-desktop galeria-imovel">
+                                                  <h4 style="font-size: 15px;margin-bottom: 14px;text-align: center;">Imagem de capa da notícia</h4>
+                                                  
+                                                  <div class="card blank" data-accept="draggable">
+                                                     <p style="text-align:center;font-size:12px;">
+                                                         Nenhuma imagem ainda
+                                                     </p>
+                                                  </div>
+
+                                                  <p style="text-align:right;padding-top:12.5px;">
+                                                      <a href="javascript:void(0)" title="Adicionar imagem" onclick="app.defineDestinyImages(4)" data-toggle="modal" data-target="#modalUploadImages" class="btn btn-default">
+                                                         Adicionar imagem
+                                                      </a>
+                                                  </p>
+
+                                              </div>
+                                              <!-- COL 4 -->
+
+                                        </div> 
+                                        <!-- ROW -->
+
+                            </div>
+
+                      </div>
+                    
+                 </div>
+
+               </div>
+            
+       `);
+
+        this.animarTransicao();
+
+        app.helpers.carregarMascaras();
+
+    }
+
+    popularEditarNoticia(dados){
+         
+         $(".nomeNoticiaEdicao").html(dados.noticia[0].titulo);
+         $("#idNoticiaEditar").val(dados.noticia[0].id);
+         $("#titulo").val(dados.noticia[0].titulo);
+         $("#resumo").val(dados.noticia[0].resumo);
+         $("#texto").val(dados.noticia[0].texto);
+         $("#seo").val(dados.noticia[0].seo);
+
+         // ALIMENTAR AS IMAGENS
+         for(var i = 0;i<dados.noticia.length;i++){
+              
+            $(".card").append(`
+
+              <div class="caixa-preview-imagem-carregada draggable" data-id="${dados.noticia[i].id}" data-url="${dados.noticia[i].capa}" ondrag="processarDrag()" id="caixaPreviewImagemCarregada${dados.noticia[i].id}">
+                    <div style="margin-left:auto;margin-right:auto;position:relative;display:block;width:100px;height:100px;border-radius:8px;background:url('${app.urlCdn}${dados.noticia[i].capa}') #f2f2f2 no-repeat;background-size:cover;background-position:center center;">
+                       &nbsp;
+                    </div>
+                    <p>
+                      <a href="javascript:void(0)" onclick="app.views.removerImagemGaleriaImagens(${dados.noticia[i].id})" title="Remover essa imagem" style="font-size:13px;color:#ff0000;">
+                        <i class="fa fa-times"></i> remover
+                      </a>
+                    </p>
+               </div>
+
+            `);
+
+          }
+
+        processarDrag();
+
+
+        // DESTRUIR EVENTUAL TINYMCE PREVIAMENTE CRIADO
+        setTimeout(function () {
+
+            tinymce.EditorManager.remove('.tx');
+
+        }, 1500);
+        
+        // É NECESSÁRIO TER UM DELAY PARA FUNCIONAR A REINICIALIZAÇÃO DO TINYMCE
+        setTimeout(function () {
+        
+            // INSTANCIAR O TINYMCE
+            tinymce.init({
+                selector: "textarea.tx",    
+                theme: "modern",
+                menubar: false,
+                language: "pt_BR",
+                toolbar1: "undo redo | bold italic alignleft aligncenter alignright alignjustify link"
+            });
+
+        }, 3000);
+
     }
 
 

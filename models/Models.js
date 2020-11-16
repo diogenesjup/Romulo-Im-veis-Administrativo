@@ -2618,7 +2618,7 @@ procEditarSlide(){
       /* EXECUTA */
       xhr.send(params);
 
-      $("#btnAddItem").html("Adicionar");
+      $("#btnAddItem").html("Atualizar");
       $(".form-control").removeAttr("readonly");
 
 }
@@ -2863,6 +2863,353 @@ procCmsSobre(){
 
 }
 
+
+cmsContato(){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-cms-contato.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS CMS CONTATO:");
+                console.log(JSON.parse(xhr.responseText));
+
+                var dados = JSON.parse(xhr.responseText);
+
+                app.views.popularContato(dados);
+                
+
+              }else{
+                
+                console.log("SEM SUCESSO cmsContato()");
+                console.log(JSON.parse(xhr.responseText));
+                aviso("<b>Oops! Algo deu errado</b>","Tente novamente em alguns minutos");
+
+              }
+
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+}
+
+
+procCmsContato(){
+
+        // SALVAR O TINYMCE
+        tinymce.triggerSave();
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-proc-cms-contato.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Página contato atualizada com sucesso!","A página e informações foram atualizadas.");
+
+
+            }else{
+              
+              console.log("SEM SUCESSO procCmsContato()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Atualizar");
+      $(".form-control").removeAttr("readonly");
+
+
+}
+
+
+
+cmsNoticias(){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-cms-noticias.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS NOTÍCIAS:");
+                console.log(JSON.parse(xhr.responseText));
+
+              }else{
+                
+                console.log("SEM SUCESSO cmsNoticias()");
+                console.log(JSON.parse(xhr.responseText));
+
+                aviso("Oops! Algo deu errado","Nossos servidores estão passando por dificuldades, tente novamente em alguns minutos.");
+
+              }
+
+              var dados = JSON.parse(xhr.responseText);
+
+              app.popularNoticias(dados);
+             
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+}
+
+
+procAdicionarNotícia(){
+
+        // SALVAR O TINYMCE
+        tinymce.triggerSave();
+   
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-add-cms-noticia.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Notícia adicionada com sucesso!","A nova notícia foi cadastrada.");
+
+              // VOLTAR PARA TODOS AS NOTÍCIAS
+              app.cmsNoticias();
+
+            }else{
+              
+              console.log("SEM SUCESSO procAdicionarNotícia()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Adicionar");
+      $(".form-control").removeAttr("readonly");
+
+}
+
+
+
+editarNoticia(id){
+
+      var idUsuario = id;
+
+      let xhr = new XMLHttpRequest();
+       
+      /* CONFIGURAÇÕES */
+      //xhr.open('GET', app.urlApi+'admin-editarPerfil.php');
+      xhr.open('POST', app.urlApi+'admin-editar-noticia.php',true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      var params = 'idUsuario='+idUsuario+"&token="+app.token;
+
+      xhr.onreadystatechange = () => {
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("DADOS RETORNADOS EDITAR NOTICIA");
+              console.log(JSON.parse(xhr.responseText));
+
+              var dados = JSON.parse(xhr.responseText);
+
+                  if(dados.sucesso==200){
+
+                    $(".placeholder").hide(0);
+                    $(".form").fadeIn(500);
+
+                    app.views.popularEditarNoticia(dados);
+
+                  }else{
+                    
+                    aviso("Oops! Algo deu errado!","Nossos servidores estão passando por dificuldades técnicas, tente novamente em alguns minutos.");
+
+                  }
+
+            }else{
+              
+              console.log("SEM SUCESSO editarNoticia()");
+              console.log(JSON.parse(xhr.responseText));
+
+            }
+
+          }
+      };
+
+      /* EXECUTA */
+      xhr.send(params);
+
+}
+
+
+procEditarNoticia(){
+
+        // SALVAR O TINYMCE
+        tinymce.triggerSave();
+
+        // CAPTURAR OS DADOS DO FORMULÁRIO
+        var dados = $('#formAddImoveis').formSerialize();
+
+        $("#btnAddItem").html("Processando...");
+        $(".form-control").attr("readonly","true");
+
+        var idUsuario = localStorage.getItem("idUsuario");
+       
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-proc-editar-noticia.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = 'idUsuario='+idUsuario+
+                     "&token="+app.token+
+                     "&"+dados;
+        
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+          if(xhr.readyState == 4) {
+
+            if(xhr.status == 200) {
+
+              console.log("OPERAÇÃO REALIZADA COM SUCESSO");
+              aviso("Notícia atualizada com sucesso!","A notícia foi atualizada.");
+
+            }else{
+              
+              console.log("SEM SUCESSO procEditarNoticia()");
+              console.log(JSON.parse(xhr.responseText));
+
+               aviso("Oops! Algo deu errado","Tente novamente em alguns minutos.");
+
+            }
+
+          }
+
+      }; // FINAL AJAX VANILLA
+
+      /* EXECUTA */
+      xhr.send(params);
+
+      $("#btnAddItem").html("Atualizar");
+      $(".form-control").removeAttr("readonly");
+
+}
+
+
+
+removerNoticia(id){
+
+        // CONFIGURAÇÕES AJAX VANILLA
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('POST', app.urlApi+'admin-remover-noticia.php',true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        var params = "token="+app.token+"&id="+id;
+
+        // INICIO AJAX VANILLA
+        xhr.onreadystatechange = () => {
+
+            if(xhr.readyState == 4) {
+
+              if(xhr.status == 200) {
+
+                console.log("RETORNO DOS DADOS REMOVER SLIDE:");
+                console.log(JSON.parse(xhr.responseText));
+                $("#linha"+id).fadeOut("500");
+                aviso("Deu certo!","Notícia foi removida com sucesso");
+
+              }else{
+                
+                console.log("SEM SUCESSO removerNoticia()");
+                console.log(JSON.parse(xhr.responseText));
+                aviso("<b>Oops! Algo deu errado</b>","Tente novamente em alguns minutos");
+
+              }
+
+            }
+
+        }; // FINAL AJAX VANILLA
+
+        /* EXECUTA */
+        xhr.send(params);
+
+}
 
 
 

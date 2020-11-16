@@ -290,6 +290,10 @@ $(document).ready(function() {
                   app.views.popularImagensUpload(dados);
                 }
 
+                if(localStorage.getItem("destinoImagens")=="noticias"){
+                  app.views.popularImagensUpload(dados);
+                }
+
             }else{
 
               fecharAviso();

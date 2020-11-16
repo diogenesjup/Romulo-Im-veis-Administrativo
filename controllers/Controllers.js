@@ -813,7 +813,96 @@ class App {
 
     }
 
+    cmsContato(){
+
+      this.views.cmsContato();
+      this.models.cmsContato();
+
+    }
+
+    procCmsContato(){
+      
+      this.models.procCmsContato();
+
+    }
+
+    cmsNoticias(){
+       
+       this.views.cmsNoticias();
+       this.models.cmsNoticias();
+
+    }
+
+    filtrotabelaNoticias(){
+
+                  var input, filter, ul, li, a, i;
+                  
+                  input = document.getElementById('filtroTabelaNoticias');
+                  filter = input.value.toUpperCase();
+                  ul = document.getElementById("conteudoNoticias");
+
+                  li = ul.getElementsByTagName('tr');
+
+                  // Loop through all list items, and hide those who don't match the search query
+                  for (i = 0; i < li.length; i++) {
+                      a = li[i];
+                      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                          li[i].style.display = "";
+                      } else {
+                          li[i].style.display = "none";
+                      }
+                  }
+     }
+
+     popularNoticias(dados){
+       
+        this.views.popularNoticias(dados);
+
+     }
+
+     adicionarNoticia(){
+
+        this.views.adicionarNoticia();
+
+     }
+
+     procAdicionarNotícia(){
+
+      this.models.procAdicionarNotícia();
+
+     }
+
+
+     editarNoticia(id){
+
+        this.views.editarNoticia();
+        this.models.editarNoticia(id);
+
+     }
+
+     procEditarNoticia(){
+        
+        this.models.procEditarNoticia();
+
+     }
+
+     perguntarRemoverNoticia(id){
+
+        confirmacao("Tem certeza que deseja remover essa notícia?",
+                    "Essa ação não pode ser revertida",
+                    `app.removerNoticia(${id})`,
+                    "Remover");
+
+    }
+    removerNoticia(id){
+
+        this.models.removerNoticia(id);
+
+    }
+
 /**
+
+
 *  ------------------------------------------------------------------------------------------------
 *
 *
@@ -838,6 +927,11 @@ class App {
         // PAGINA SOBRE
         if(tipo==3){
           localStorage.setItem("destinoImagens","sobre");
+        }
+
+        // NOTÍCIAS
+        if(tipo==4){
+          localStorage.setItem("destinoImagens","noticias");
         }
 
     }
